@@ -7,62 +7,42 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
-
-struct User{
-    var age : Int
-    var name : String
-}
 
 
 class ViewController: UIViewController {
+    @IBOutlet weak var theNickNameTextField: UITextField!
     
-    var ref:DatabaseReference!
-
-    @IBOutlet weak var theLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         Auth.auth().addStateDidChangeListener { auth, user in
             if user == nil {
-                print("尚未登入")
                 auth.signInAnonymously()
-            }else{
-                print("已登入")
             }
         }
-        
-        ref = Database.database().reference().child("users")
-        
-        
-        //簡單寫入讀取
-//        ref.setValue(ServerValue.timestamp())
-        
-        
-        //持續讀取
-        ref.child("test").observe(.value) { snapshot in
-            let data = snapshot.value as? String
-            self.theLabel.text = data
-        }
-//        ref.observe(of: .value) { snapshot in
-//            let data = snapshot.value as! String
-//            print(data)
-//        }
-        
-        
-        
-        
-    }
-
-
-    @IBAction func addRecord(_ sender: Any) {
-        
-        ref.child("test2").childByAutoId().setValue(ServerValue.timestamp())
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        ref.child("test").removeAllObservers()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "goPage2":
+            let nextVC = segue.destination as! Page2ViewController
+            //TODO:檢查名字正確性
+            nextVC.nickName = self.theNickNameTextField.text ?? ""
+        default:
+            break
+        }
     }
+
+
+    @IBAction func goPage2(_ sender: Any) {
+        let nickName = self.theNickNameTextField.text ?? "Anonymous"
+        performSegue(withIdentifier: "goPage2", sender: self)
+    }
+    
+ 
+    
+    
+    
+    
 }
 
