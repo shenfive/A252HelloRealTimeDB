@@ -52,10 +52,25 @@
                     <view key="view" contentMode="scaleToFill" id="bSz-K3-kNU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S84-Ld-vvg">
+                                <rect key="frame" x="10" y="147" width="373" height="627"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1gj-yu-qmM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="S84-Ld-vvg" firstAttribute="top" secondItem="1gj-yu-qmM" secondAttribute="top" constant="44" id="Orb-PV-hEW"/>
+                            <constraint firstItem="1gj-yu-qmM" firstAttribute="trailing" secondItem="S84-Ld-vvg" secondAttribute="trailing" constant="10" id="p09-Bl-lv9"/>
+                            <constraint firstItem="S84-Ld-vvg" firstAttribute="leading" secondItem="1gj-yu-qmM" secondAttribute="leading" constant="10" id="u4c-ys-nlu"/>
+                            <constraint firstItem="1gj-yu-qmM" firstAttribute="bottom" secondItem="S84-Ld-vvg" secondAttribute="bottom" constant="44" id="wMh-xA-1pa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ow9-oU-NgA"/>
+                    <connections>
+                        <outlet property="theTableView" destination="S84-Ld-vvg" id="mSG-jk-DbT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QJ-uV-bkA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
