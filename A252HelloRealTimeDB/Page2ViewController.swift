@@ -13,6 +13,7 @@ struct SubjectData:Codable{
     var subject:String
     var lastUpdate:Date
     var lastUserName:String
+    var key:String
 }
 
 class Page2ViewController: UIViewController {
@@ -23,6 +24,8 @@ class Page2ViewController: UIViewController {
     var ref:DatabaseReference!
     
     var displayList:[SubjectData] = []
+    
+    var selectedSubjectData:SubjectData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +42,7 @@ class Page2ViewController: UIViewController {
             self.displayList.removeAll()
             snapshot.children.forEach { child in
                 if let data = child as? DataSnapshot{
-                    var subjectData = SubjectData.init(subject: "", lastUpdate: Date(), lastUserName: "")
+                    var subjectData = SubjectData.init(subject: "", lastUpdate: Date(), lastUserName: "",key: "")
                     if let subject = data.childSnapshot(forPath: "subject").value as? String{
                         subjectData.subject = subject
                     }
@@ -50,6 +53,10 @@ class Page2ViewController: UIViewController {
                     if let lastUpdateUserNickname = data.childSnapshot(forPath: "lastUserName").value as? String{
                         subjectData.lastUserName = lastUpdateUserNickname
                     }
+                    
+                    subjectData.key = data.key
+                    
+                    
                     self.displayList.append(subjectData)
                 }
             }
@@ -58,6 +65,19 @@ class Page2ViewController: UIViewController {
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            case "goPage3":
+            let nextVC = segue.destination as! Page3ViewController
+            nextVC.subject = selectedSubjectData!
+            nextVC.nickName = nickName
+        default:
+            break
+        }
+    }
+    
+    
 }
 
 extension Page2ViewController:UITableViewDelegate,UITableViewDataSource{
@@ -72,7 +92,7 @@ extension Page2ViewController:UITableViewDelegate,UITableViewDataSource{
         
         let formater = DateFormatter()
         formater.dateFormat = "MM-dd HH:mm:ss"
-        cell.lastDate.text = formater.string(from: displayList[indexPath.row].lastUpdate)
+        cell.lastDate.text = formater.string(from: displayList[indexPath.row].lastUpdate) + ":\( displayList[indexPath.row].key)"
         
         
 //        cell.textLabel?.text = displayList[indexPath.row].subject
@@ -82,5 +102,10 @@ extension Page2ViewController:UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedSubjectData = displayList[indexPath.row]
+        performSegue(withIdentifier: "goPage3", sender: self)
+    }
     
 }

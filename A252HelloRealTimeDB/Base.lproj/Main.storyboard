@@ -70,11 +70,62 @@
                     <navigationItem key="navigationItem" id="Ow9-oU-NgA"/>
                     <connections>
                         <outlet property="theTableView" destination="S84-Ld-vvg" id="mSG-jk-DbT"/>
+                        <segue destination="Gdm-YB-MCQ" kind="show" identifier="goPage3" id="5h5-vw-2eD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QJ-uV-bkA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2004" y="-27"/>
+        </scene>
+        <!--Page3 View Controller-->
+        <scene sceneID="Yk3-mk-GmB">
+            <objects>
+                <viewController id="Gdm-YB-MCQ" customClass="Page3ViewController" customModule="A252HelloRealTimeDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TnO-oD-3eL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VDk-va-zwN">
+                                <rect key="frame" x="16" y="123" width="361" height="615"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfc-Tg-ipE">
+                                <rect key="frame" x="302" y="763" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="newMesage:" destination="Gdm-YB-MCQ" eventType="touchUpInside" id="p7q-bi-kvR"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDe-EB-RTe">
+                                <rect key="frame" x="16" y="763" width="260" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZNZ-mo-spU"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="ZNZ-mo-spU" firstAttribute="bottom" secondItem="xfc-Tg-ipE" secondAttribute="bottom" constant="20" id="Gx5-vV-LbO"/>
+                            <constraint firstItem="xfc-Tg-ipE" firstAttribute="leading" secondItem="TDe-EB-RTe" secondAttribute="trailing" constant="26" id="KLB-uL-Rcl"/>
+                            <constraint firstItem="VDk-va-zwN" firstAttribute="top" secondItem="ZNZ-mo-spU" secondAttribute="top" constant="20" id="OYE-nG-RGi"/>
+                            <constraint firstItem="TDe-EB-RTe" firstAttribute="top" secondItem="VDk-va-zwN" secondAttribute="bottom" constant="25" id="OZC-tD-Fl2"/>
+                            <constraint firstItem="VDk-va-zwN" firstAttribute="leading" secondItem="ZNZ-mo-spU" secondAttribute="leading" constant="16" id="Q9N-C0-fIO"/>
+                            <constraint firstItem="ZNZ-mo-spU" firstAttribute="bottom" secondItem="TDe-EB-RTe" secondAttribute="bottom" constant="21" id="WXV-oA-gj0"/>
+                            <constraint firstItem="ZNZ-mo-spU" firstAttribute="trailing" secondItem="xfc-Tg-ipE" secondAttribute="trailing" constant="16" id="ldX-Uy-5lo"/>
+                            <constraint firstItem="TDe-EB-RTe" firstAttribute="leading" secondItem="ZNZ-mo-spU" secondAttribute="leading" constant="16" id="qcl-PV-Sjj"/>
+                            <constraint firstItem="ZNZ-mo-spU" firstAttribute="trailing" secondItem="VDk-va-zwN" secondAttribute="trailing" constant="16" id="zU1-Lw-Kzw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="beO-qP-b5H"/>
+                    <connections>
+                        <outlet property="inputTextField" destination="TDe-EB-RTe" id="klp-J3-N0E"/>
+                        <outlet property="theTableView" destination="VDk-va-zwN" id="A6g-lE-KOX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sRz-Et-Pnw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2916.7938931297708" y="-23.239436619718312"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wUH-FT-EIW">
@@ -98,6 +149,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
