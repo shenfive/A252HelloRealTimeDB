@@ -32,7 +32,7 @@ class Page3ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference().child("users/dis")
+        ref = Database.database().reference().child("users")
         
         print(nickName)
         title = subject.subject
@@ -47,7 +47,7 @@ class Page3ViewController: UIViewController {
         
         
         //讀資料
-        ref.child(subject.key).observe(.value) { snapshot in
+        ref.child("dis").child(subject.key).observe(.value) { snapshot in
             self.displayContent.removeAll()
             snapshot.children.forEach { child in
                 if let childSnapshot = child as? DataSnapshot {
@@ -78,11 +78,18 @@ class Page3ViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ref.child("dis").child(subject.key).removeAllObservers()
+    }
+    
     @IBAction func newMesage(_ sender: Any) {
         let data = ["content":inputTextField.text ?? "",
                     "nickname":nickName,
                     "timestemp":ServerValue.timestamp()] as [String : Any]
-        ref.child(subject.key).childByAutoId().setValue(data)
+        ref.child("dis").child(subject.key).childByAutoId().setValue(data)
+        ref.child("subject").child(subject.key).child("lastUserName").setValue(nickName)
+        ref.child("subject").child(subject.key).child("lastupdate").setValue(ServerValue.timestamp())
     }
     
     /*
