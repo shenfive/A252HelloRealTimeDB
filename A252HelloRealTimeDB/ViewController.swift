@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             }
         }
         
-        ref = Database.database().reference().child("users").child("test")
+        ref = Database.database().reference().child("users")
         
         
         //簡單寫入讀取
@@ -49,5 +49,9 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func addRecord(_ sender: Any) {
+        
+        ref.child("test2").childByAutoId().setValue(ServerValue.timestamp())
+    }
 }
 
