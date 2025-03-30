@@ -59,5 +59,10 @@ class ViewController: UIViewController {
         
         ref.child("test2").childByAutoId().setValue(ServerValue.timestamp())
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ref.child("test").removeAllObservers()
+    }
 }
 
