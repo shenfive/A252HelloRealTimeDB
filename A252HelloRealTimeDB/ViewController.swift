@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     var ref:DatabaseReference!
 
+    @IBOutlet weak var theLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,10 +38,15 @@ class ViewController: UIViewController {
         //簡單寫入讀取
 //        ref.setValue(ServerValue.timestamp())
         
-//        ref.observeSingleEvent(of: .value) { snapshot in
-//            let time = snapshot.value as! Double
-//            let date = Date(timeIntervalSince1970: time / 1000)
-//            print(date)
+        
+        //持續讀取
+        ref.child("test").observe(.value) { snapshot in
+            let data = snapshot.value as? String
+            self.theLabel.text = data
+        }
+//        ref.observe(of: .value) { snapshot in
+//            let data = snapshot.value as! String
+//            print(data)
 //        }
         
         
